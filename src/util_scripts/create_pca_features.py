@@ -89,8 +89,9 @@ def main():
                                                                pca=pca, n_components=n_components,
                                                                normalize=normalize, reconstruct=reconstruct)
         if save_pca:
-            Path(f"{exp_dir}saved_models").mkdir(parents=True, exist_ok=True)
-            with open(f"{exp_dir}saved_models/pca.model", "wb") as f:
+            models_dir=join(exp_dir, "saved_models")
+            Path(models_dir).mkdir(parents=True, exist_ok=True)
+            with open(f"{models_dir}/pca.model", "wb") as f:
                 pickle.dump(pca, f)
 
         print("Section time: {:.2f} seconds.".format(time() - start))

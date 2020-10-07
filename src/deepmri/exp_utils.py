@@ -15,7 +15,8 @@ def generate_features(exp_dir, subj_id, model, model_name,
                       inference_epoch, latent_dim, device,
                       dataset, conv_type, device_num=0):
     if inference_epoch != 0:
-        model_path = f"{exp_dir}saved_models/{model_name}_epoch_{inference_epoch}"
+        models_dir=join(exp_dir, "saved_models")
+        model_path = f"{models_dir}/{model_name}_epoch_{inference_epoch}"
         model.load_state_dict(torch.load(model_path, map_location=f"cuda:{device_num}"))
         model.eval()
 
@@ -38,7 +39,8 @@ def reconsruct(exp_dir, data_dir, subj_id, model, model_name, device, dataset,
                inference_epoch, conv_type, device_num=0):
 
     if inference_epoch != 0:
-        model_path = f"{exp_dir}saved_models/{model_name}_epoch_{inference_epoch}"
+        models_dir=join(exp_dir, "saved_models")
+        model_path = f"{models_dir}/{model_name}_epoch_{inference_epoch}"
         model.load_state_dict(torch.load(model_path, map_location=f"cuda:{device_num}"))
         model.eval()
 

@@ -176,9 +176,10 @@ def main():
             })
 
             if (epoch + cfg["start_epoch"]) % cfg["checkpoint"] == 0:
-                Path(f"{exp_dir}saved_models").mkdir(parents=True, exist_ok=True)
+                models_dir=join(exp_dir, "saved_models")
+                Path(models_dir).mkdir(parents=True, exist_ok=True)
                 torch.save(model.state_dict(),
-                           f"{exp_dir}saved_models/{cfg['model_name']}_epoch_{epoch + cfg['start_epoch']}")
+                           f"{models_dir}/{cfg['model_name']}_epoch_{epoch + cfg['start_epoch']}")
 
             epoch_loss /= len(trainloader)
 
